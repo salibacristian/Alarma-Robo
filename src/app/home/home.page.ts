@@ -6,7 +6,7 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
 import { timer } from 'rxjs';
-import { Platform } from 'ionic-angular';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -34,7 +34,7 @@ export class HomePage {
   derecha=true;
   constructor(router: Router, deviceMotion: DeviceMotion,
     deviceOrientation: DeviceOrientation, nativeAudio: NativeAudio, flashlight: Flashlight,
-    vibration: Vibration, private platform: Platform) {
+    vibration: Vibration) {
     this.deviceMotion = deviceMotion;
     this.deviceOrientation = deviceOrientation;
     this.nativeAudio = nativeAudio;

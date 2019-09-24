@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { Platform } from 'ionic-angular';
+
 
 import { DeviceMotion } from '@ionic-native/device-motion/ngx';
 import { DeviceOrientation } from '@ionic-native/device-orientation/ngx';
@@ -49,8 +49,8 @@ const firebaseConfig = {
     Vibration,
     NativeAudio,
     DeviceOrientation,
-    DeviceMotion,
-    Platform
+    DeviceMotion
+    
 
   ],
   bootstrap: [AppComponent]
