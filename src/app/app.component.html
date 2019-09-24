@@ -1,3 +1,21 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<div *ngIf='showSplash' class="fondo">
+  <div class="base">
+    <div class="center">
+      <div class="edificio"></div>
+    </div>
+  </div>
+</div>
+<ion-toolbar color="success">
+  <ion-title text-center>
+    Alarma Robo
+  </ion-title>
+  <ion-button slot="end" fill="clear" color="light" (click)='LogOut()'>
+    <ion-icon name="log-out"></ion-icon>
+  </ion-button>
+</ion-toolbar>
+
+<div class="fondo">
+  <ion-content >
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
+</div>

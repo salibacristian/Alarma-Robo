@@ -1,14 +1,6 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
-</ion-content>
+  <ion-button (click)='toActivarAlarma()' fill='clear'  [color]='color' class="total">
+      <div class="total2">
+        <ion-icon [color]='color' class="icono" slot="start" [name]="icon"></ion-icon><br>
+        <h1 class="texto">{{estado}}</h1>
+      </div>
+    </ion-button>
