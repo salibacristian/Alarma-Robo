@@ -13,7 +13,7 @@
 
 .base {
     /* The image used */
-    background-image: url("./assets/splash/base.jpg");
+    background-image: url("./assets/splash/base.png");
   
     /* Full height */
     height: 100%; 
@@ -25,7 +25,7 @@
 
 .center {
     /* The image used */
-    background-image: url("./assets/splash/ladron.png");
+    background-image: url("./assets/splash/icon.png");
   
     /* Full height */
     height: 100%; 
@@ -33,7 +33,7 @@
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 50%;
     animation-name: spin;
     animation-duration:2500ms;
     animation-iteration-count: infinite;
@@ -51,9 +51,9 @@
 
 @keyframes spin {
     from {
-        transform:scale(1,1);
+        transform:rotate(0deg);
     }
     to {
-        transform:scale(0,0);
+        transform:rotate(360deg);
     }
 }
