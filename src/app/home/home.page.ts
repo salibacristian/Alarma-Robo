@@ -57,6 +57,7 @@ export class HomePage {
     // Si tenía la alarma activada, la desactiva, deja de escuchar los cambios en el movimiento y la orientación del dispositivo 
     // y frena todos los audios que haya en curso
     if (this.locked) {
+      this.play('prender');
       this.color='success';
       this.locked = false;
       this.estado = 'Desactivada';
@@ -64,6 +65,7 @@ export class HomePage {
       this.analizarMovimientos.unsubscribe();
       this.analizarOrientacion.unsubscribe();
     } else {
+
       this.color='success';
       this.color='danger';
       this.icon = "lock";
