@@ -26,12 +26,13 @@ export class HomePage {
   public router: Router;
   public estado: string;
   public orientacion: number;
+  audioAsset: HTMLAudioElement;
   vertical = true;
-  icon='unlock';
-  color="success";
-  izquierda=true;
-  flash=false;
-  derecha=true;
+  icon = 'notifications-off';
+  color = "success";
+  izquierda = true;
+  flash = false;
+  derecha = true;
   constructor(router: Router, deviceMotion: DeviceMotion,
     deviceOrientation: DeviceOrientation, nativeAudio: NativeAudio, flashlight: Flashlight,
     vibration: Vibration) {
@@ -56,19 +57,20 @@ export class HomePage {
 
     // Si tenía la alarma activada, la desactiva, deja de escuchar los cambios en el movimiento y la orientación del dispositivo 
     // y frena todos los audios que haya en curso
+    this.stop();
     if (this.locked) {
+
       this.play('prender');
-      this.color='success';
+      this.color = 'success';
       this.locked = false;
       this.estado = 'Desactivada';
-      this.icon = "unlock";
+      this.icon = "notifications-off";
       this.analizarMovimientos.unsubscribe();
       this.analizarOrientacion.unsubscribe();
     } else {
 
-      this.color='success';
-      this.color='danger';
-      this.icon = "lock";
+      this.color = 'danger';
+      this.icon = "notifications";
       // Si la alarma estaba desactivada, la activa
       this.locked = true;
       this.estado = 'Activada';
@@ -81,34 +83,34 @@ export class HomePage {
 
 
           if (acceleration.x > 8) {
-            if(this.izquierda){
+            if (this.izquierda) {
               this.izquierda = false;
               this.play('izquierda');
-              timer(4000).subscribe(dd=>{this.izquierda=true});
+              timer(4000).subscribe(dd => { this.izquierda = true });
             }
           }
           else if (acceleration.x < -8) {
-            if(this.derecha){
+            if (this.derecha) {
               this.derecha = false;
               this.play('derecha');
-              timer(5000).subscribe(d=>{this.derecha=true});
+              timer(5000).subscribe(d => { this.derecha = true });
             }
           }
           else if ((acceleration.x > -3.0 && acceleration.x < 3.0 && acceleration.y > 8.5)) {
-            if(this.vertical){
+            if (this.vertical) {
               this.vertical = false;
-              if(!this.flash){
+              if (!this.flash) {
                 this.flashlight.switchOn();
                 this.flash = true;
               }
               this.play('vertical');
-              timer(5000).subscribe(data=>{
+              timer(5000).subscribe(data => {
                 this.flashlight.switchOff();
                 this.vertical = true;
               })
               this.horizontal = false;
             }
-            
+
           }
           else if (acceleration.x > -3.0 && acceleration.x < 3.0 && acceleration.y < 1 && acceleration.y > -1) {
             if (this.horizontal === false) {
@@ -124,8 +126,16 @@ export class HomePage {
   }
 
   play(pos) {
+    if (this.audioAsset)
+      this.audioAsset.remove();
     let path = "../assets/sonidos/" + pos + ".mp3";
-    let audioAsset = new Audio(path);
-    audioAsset.play();
+    this.audioAsset = new Audio(path);
+    this.audioAsset.play();
   }
+
+  stop() {
+    if (this.audioAsset)
+      this.audioAsset.pause();
+  }
+
 }
